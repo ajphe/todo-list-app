@@ -84,9 +84,7 @@
 	    var newId = ""; 
 	    var charset = "0123456789";
 
-        for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
+
 
 		// If an ID was actually given, find the item and update each property
 		if (id) {
@@ -102,6 +100,28 @@
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, todos);
 		} else {
+
+
+			var idUsed = true;
+
+			while ( idUsed ) {
+
+            for (var i = 0; i < 6; i++) {
+                newId += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+			idUsed=false;
+            var j=0;
+			while ( j < todos.length ) {
+                if( todos[j].id === newId) {
+              idUsed=true;
+              j=todos.length;
+              }
+              j++;
+            }
+
+            }
+
+
 
     		// Assign an ID
 			updateData.id = parseInt(newId);
