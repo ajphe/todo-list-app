@@ -106,18 +106,20 @@
 
 			while ( idUsed ) {
 
-            for (var i = 0; i < 6; i++) {
-                newId += charset.charAt(Math.floor(Math.random() * charset.length));
-            }
-			idUsed=false;
-            var j=0;
-			while ( j < todos.length ) {
-                if( todos[j].id === newId) {
-              idUsed=true;
-              j=todos.length;
-              }
-              j++;
-            }
+				for (var i = 0; i < 6; i++) {
+					newId += charset.charAt(Math.floor(Math.random() * charset.length));
+				}
+
+				idUsed=false;
+				var j=0;
+
+				while ( j < todos.length ) {
+					if( todos[j].id === newId) {
+						idUsed=true;
+						j=todos.length;
+					 }
+				  j++;
+				}
 
             }
 
