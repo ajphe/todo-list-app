@@ -205,7 +205,6 @@
 	 * Just pass in the event object.
 	 */
 	Controller.prototype.toggleAll = function (completed) {
-		console.log('------------------------------ apppel de toggleAll avec completed='+completed);
 		var self = this;
 		self.model.read({ completed: !completed }, function (data) {
 			data.forEach(function (item) {

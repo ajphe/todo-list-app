@@ -75,11 +75,11 @@
 	 * @param {number} id An optional param to enter an ID of an item to update
 	 */
 	Store.prototype.save = function (updateData, callback, id) {
+
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
 
 		callback = callback || function () {};
-
 		// Generate an ID
 	    var newId = ""; 
 	    var charset = "0123456789";
@@ -101,34 +101,7 @@
 			callback.call(this, todos);
 		} else {
 
-
-			var idUsed = true;
-
-			while ( idUsed ) {
-
-				for (var i = 0; i < 6; i++) {
-					newId += charset.charAt(Math.floor(Math.random() * charset.length));
-				}
-
-				idUsed=false;
-				var j=0;
-
-				while ( j < todos.length ) {
-					if( todos[j].id === newId) {
-						idUsed=true;
-						j=todos.length;
-					 }
-				  j++;
-				}
-
-            }
-
-
-
-    		// Assign an ID
-			updateData.id = parseInt(newId);
-    
-
+			updateData.id = parseInt(this.distinctId());
 			todos.push(updateData);
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, [updateData]);
@@ -168,10 +141,52 @@
 	 * @param {function} callback The callback to fire after dropping the data
 	 */
 	Store.prototype.drop = function (callback) {
-		var data = {todos: []};
+	    var data = {todos: []};
 		localStorage[this._dbName] = JSON.stringify(data);
 		callback.call(this, data.todos);
 	};
+
+	Store.prototype.distinctId = function () {
+
+		var newId = "";
+        var idUsed = true;
+
+        while ( idUsed ) {
+
+            newId=this.randomId();
+            idUsed=this.checkId(newId);
+
+
+        }
+		return newId;
+
+    }
+
+
+    Store.prototype.randomId = function() {
+        var randomNb="";
+        var charset = "0123456789";
+		for (var i = 0; i < 6; i++) {
+            randomNb += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        return randomNb;
+	}
+
+	Store.prototype.checkId = function(id) {
+        var data = JSON.parse(localStorage[this._dbName]);
+        var todos = data.todos;
+        var idUsed=false;
+        var j=0;
+        while ( j < todos.length ) {
+            if( todos[j].id === id) {
+                idUsed=true;
+                j=todos.length;
+            }
+            j++;
+        }
+
+		return idUsed;
+	}
 
 	// Export to window
 	window.app = window.app || {};
