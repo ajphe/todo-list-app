@@ -16,7 +16,7 @@ describe('model', function () {
 
 	describe('update', function () {
 
-		it('update launch store.save', function () {
+		it('should launch store.save', function () {
 
             spyOn(store,'save');
 			model.update();
@@ -28,7 +28,7 @@ describe('model', function () {
 
     describe('remove', function () {
 
-        it('remove launch store.remove', function () {
+        it('should launch store.remove', function () {
 
             spyOn(store,'remove');
             model.remove();
@@ -39,7 +39,7 @@ describe('model', function () {
 
     describe('removeAll', function () {
 
-        it('removeAll launch store.drop', function () {
+        it('should launch store.drop', function () {
 
             spyOn(store,'drop');
             model.removeAll();
@@ -51,7 +51,7 @@ describe('model', function () {
 
     describe('getCount', function () {
 
-        it('getCount launch store.findAll', function () {
+        it('should launch store.findAll', function () {
 
             spyOn(store,'findAll');
             model.getCount();
@@ -64,7 +64,7 @@ describe('model', function () {
 
     describe('read', function () {
 
-        it('read with function parameter launch store.findAll', function () {
+        it('should with function parameter launch store.findAll', function () {
 
             spyOn(store,'findAll');
             model.read(function(){});
@@ -72,14 +72,14 @@ describe('model', function () {
         });
 
 
-        it('read with number parameter launch store.find', function () {
+        it('should with number parameter launch store.find', function () {
 
             spyOn(store,'find');
             model.read(5);
             expect(store.find).toHaveBeenCalled();
         });
 
-        it('read with string parameter launch store.find', function () {
+        it('should with string parameter launch store.find', function () {
 
             spyOn(store,'find');
             model.read('ABC');
@@ -93,7 +93,7 @@ describe('model', function () {
 
     describe('create', function () {
 
-        it('create launch store.save', function () {
+        it('should launch store.save', function () {
 
             spyOn(store,'save');
             model.create();

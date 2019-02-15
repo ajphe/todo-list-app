@@ -27,9 +27,9 @@ describe('store', function () {
 	});
 
 
-	describe('save', function () {
+	describe('save without id', function () {
 
-		it('save without id launch distinctId', function () {
+		it('should launch distinctId', function () {
 
             spyOn(store,'distinctId');
 
@@ -43,7 +43,7 @@ describe('store', function () {
 		});
 
 
-        it('save without id , lauch  randomId', function () {
+        it('should lauch  randomId', function () {
 
 
             spyOn(store,'randomId');
@@ -59,7 +59,7 @@ describe('store', function () {
         });
 
 
-        it('save without id , launch checkId', function () {
+        it('should launch checkId', function () {
 
             spyOn(store,'checkId');
 
@@ -75,7 +75,7 @@ describe('store', function () {
         });
 
 
-        it('save without id ,launch distinctId randomId checkId', function () {
+        it('should launch distinctId randomId checkId', function () {
 
             spyOn(store,'distinctId').and.callThrough();
             spyOn(store,'checkId').and.callThrough();
@@ -101,13 +101,13 @@ describe('store', function () {
     describe('checkId', function () {
 
 
-        it('checkId of existing id is true ', function () {
+        it('should give true for existing id ', function () {
 
             expect(store.checkId(1)).toBe(true);
 
         });
 
-        it('checkId of non-existing id is false ', function () {
+        it('should give false for non-existing id ', function () {
 
             expect(store.checkId(3)).toBe(false);
 
